@@ -52,11 +52,8 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build
-        run: |
-          cargo build --verbose --no-default-features
-          cargo build --verbose --no-default-features --features=no-unsafe
+        run: cargo build --verbose
+
         
       - name: Run Tests
-        run: |
-          cargo test --all --verbose --no-default-features
-          cargo test --all --verbose --no-default-features --features=no-unsafe
+        run: cargo test --all --verbose
