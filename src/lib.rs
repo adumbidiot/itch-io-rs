@@ -72,7 +72,7 @@ impl Client {
     /// Get a game page.
     ///
     /// The `url` parameter should be a url for the game page, like `https://tumblewed.itch.io/doghouse-2`.
-    pub async fn get_game(&self, url: &str) -> Result<GamePage, Error> {
+    pub async fn get_game_page(&self, url: &str) -> Result<GamePage, Error> {
         Ok(self
             .get_html(url, |html| GamePage::from_html(&html))
             .await??)
@@ -162,7 +162,10 @@ mod test {
         let client = Client::new();
 
         for url in GAME_PAGE_URLS {
-            let game_page = client.get_game(url).await.expect("failed to get game page");
+            let game_page = client
+                .get_game_page(url)
+                .await
+                .expect("failed to get game page");
             dbg!(&game_page);
 
             for download in game_page.downloads.iter() {
