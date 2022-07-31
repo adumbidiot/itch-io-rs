@@ -4,6 +4,8 @@ use scraper::Html;
 use scraper::Selector;
 use url::Url;
 
+static GAME_TITLE_SELECTOR: Lazy<Selector> =
+    Lazy::new(|| Selector::parse(".game_title").expect("invalid GAME_TITLE_SELECTOR"));
 static TWITTER_URL_SELECTOR: Lazy<Selector> = Lazy::new(|| {
     Selector::parse("meta[name=\"twitter:url\"]").expect("invalid TWITTER_URL_SELECTOR")
 });
@@ -31,6 +33,9 @@ static IFRAME_SELECTOR: Lazy<Selector> =
 ///  Error that may occur while parsing a game page
 #[derive(Debug, thiserror::Error)]
 pub enum FromHtmlError {
+    #[error("missing title")]
+    MissingTitle,
+
     #[error("missing twitter url")]
     MissingTwitterUrl,
 
@@ -59,6 +64,9 @@ pub enum FromHtmlError {
 /// The page for a game
 #[derive(Debug)]
 pub struct GamePage {
+    /// The title of this game
+    pub title: String,
+
     /// The url of this page.
     ///
     /// This is called `twitter_url` as it is scraped from twitter metadata on the page.
@@ -77,6 +85,13 @@ pub struct GamePage {
 impl GamePage {
     /// Parse a game page
     pub fn from_html(html: &Html) -> Result<Self, FromHtmlError> {
+        let title = html
+            .select(&GAME_TITLE_SELECTOR)
+            .next()
+            .and_then(|title_el| title_el.text().next())
+            .ok_or(FromHtmlError::MissingTitle)?
+            .to_string();
+
         let twitter_url = Url::parse(
             html.select(&TWITTER_URL_SELECTOR)
                 .next()
@@ -118,6 +133,7 @@ impl GamePage {
             .transpose()?;
 
         Ok(Self {
+            title,
             twitter_url,
             csrf_token,
             downloads,
