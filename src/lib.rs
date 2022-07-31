@@ -4,6 +4,7 @@ pub use self::types::DownloadInfo;
 pub use self::types::DownloadPage;
 pub use self::types::DownloadPageUrlInfo;
 pub use self::types::GamePage;
+pub use self::types::Platform;
 pub use self::types::PurchaseDialog;
 use scraper::Html;
 

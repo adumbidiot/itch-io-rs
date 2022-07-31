@@ -29,3 +29,16 @@ pub struct DownloadPageUrlInfo {
     /// The download page url
     pub url: Url,
 }
+
+/// A platform
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
+pub enum Platform {
+    /// Windows
+    Windows,
+
+    /// Linux
+    Linux,
+
+    /// MacOs
+    MacOs,
+}

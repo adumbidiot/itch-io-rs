@@ -1,3 +1,4 @@
+use crate::types::Platform;
 use once_cell::sync::Lazy;
 use scraper::ElementRef;
 use scraper::Html;
@@ -166,17 +167,4 @@ impl Download {
 
         Some(value * modifier)
     }
-}
-
-/// A platform
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-pub enum Platform {
-    /// Windows
-    Windows,
-
-    /// Linux
-    Linux,
-
-    /// MacOs
-    MacOs,
 }
