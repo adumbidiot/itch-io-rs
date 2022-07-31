@@ -1,0 +1,16 @@
+[package]
+name = "itch-io"
+version = "0.0.0"
+edition = "2021"
+
+[dependencies]
+once_cell = "1.13.0"
+reqwest = { version = "0.11.11", features = [ "json", "cookies" ] }
+scraper = { version = "0.13.0", default-features = false }
+serde = { version = "1.0.140", features = ["derive"] }
+thiserror = "1.0.31"
+tokio = "1.20.1"
+url = { version = "2.2.2", features = [ "serde" ] }
+
+[dev-dependencies]
+tokio = { version = "1.20.1", features = [ "macros" ]  }
