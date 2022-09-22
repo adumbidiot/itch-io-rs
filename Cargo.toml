@@ -19,7 +19,7 @@ tokio = { version = "1.21.1", features = [ "rt" ] }
 url = { version = "2.3.1", features = [ "serde" ] }
 
 # Optional
-anyhow = { version = "1.0.64", optional = true }
+anyhow = { version = "1.0.65", optional = true }
 argh = { version = "0.1.8", optional = true }
 itoa = { version = "1.0.3", optional = true }
 
