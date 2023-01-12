@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Error","The error type"],["Platform","A platform"]],"struct":[["Client","The client"],["DownloadInfo","Download info"],["DownloadPage","A page of downloads"],["DownloadPageUrlInfo","The download page url"],["GamePage","The page for a game"],["PurchaseDialog","The purchase dialog"]]};
