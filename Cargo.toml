@@ -16,7 +16,7 @@ scraper = { version = "0.16.0", default-features = false }
 serde = { version = "1.0.163", features = ["derive"] }
 thiserror = "1.0.40"
 tokio = { version = "1.28.2", features = [ "rt" ] }
-url = { version = "2.3.1", features = [ "serde" ] }
+url = { version = "2.4.0", features = [ "serde" ] }
 
 # Optional
 anyhow = { version = "1.0.71", optional = true }
